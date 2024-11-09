@@ -80,7 +80,7 @@ export default {
       selectedItemIndex: null,
       prizeDescriptions: [
         "a Trip to Japan",
-        "home Date home made cuisine",
+        "a Date + home made cuisine",
         "a Date at Bao bar",
         "a Date at Hard Rock",
         "Airpods Pro 2",
