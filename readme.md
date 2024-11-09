@@ -1,5 +1,7 @@
 # a simply birthday fun app
 
+test hier: https://borndaywishes.netlify.app/
+
 built with Vu3 using Options API,
 for the spinner I used a roulette component: https://roulette.nitocode.com/docs,
 I don't play russian roulette but I guess its fine
@@ -14,3 +16,5 @@ the person, so she only gets to pick one of the wishes she obtained by spinning 
 places, like restaurants, what ever comes to your mind !
 
 * For publishing online, I'm simply using netlify for simplicity
+
+![alt text](app-gui.png)
