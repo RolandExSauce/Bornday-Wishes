@@ -36,7 +36,7 @@
       </div>
 
       <div class="right">
-        <Roulette
+        <!-- <Roulette
           ref="wheel"
           :key="rouletteKey"
           :items="items"
@@ -56,7 +56,9 @@
           <template #baseContent>
             <div style="color: #2c3e50">Spin, Baby!</div>
           </template>
-        </Roulette>
+        </Roulette> -->
+
+        <Roulette ref="wheel" :items="items" @click="launchWheel" />
       </div>
     </div>
 
@@ -73,88 +75,131 @@ export default {
   components: {
     Roulette,
   },
+  emits: ["wheel-start", "wheel-end"], // Declare emitted events here
   data() {
     return {
-      rouletteKey: 0,
-      winnerMessage: "",
-      selectedItemIndex: null,
-      prizeDescriptions: [
-        "a Trip to Japan",
-        "a Date + home made cuisine",
-        "a Date at Bao bar",
-        "a Date at Hard Rock",
-        "Airpods Pro 2",
-        "a ThinkPad P16s G3 16",
-      ],
       items: [
         {
           id: 1,
-          name: "price 1",
-          htmlContent: "Price 1",
-          textColor: "#2c3e50",
-          background: "#E1EBEE",
+          name: "Banana",
+          htmlContent: "Banana",
+          textColor: "",
+          background: "",
         },
         {
           id: 2,
-          name: "price 2",
-          htmlContent: "Price 2",
-          textColor: "#2c3e50",
-          background: "#87CEFA",
+          name: "Apple",
+          htmlContent: "Apple",
+          textColor: "",
+          background: "",
         },
         {
           id: 3,
-          name: "price 3",
-          htmlContent: "Price 3",
-          textColor: "#2c3e50",
-          background: "#CF9FFF",
+          name: "Orange and Purple",
+          htmlContent: "Orange<br>and Purple",
+          textColor: "",
+          background: "",
         },
         {
           id: 4,
-          name: "price 4",
-          htmlContent: "Price 4",
-          textColor: "#2c3e50",
-          background: "#E6E6FA",
-        },
-        {
-          id: 5,
-          name: "price 5",
-          htmlContent: "Price 5",
-          textColor: "#2c3e50",
-          background: "#FDF0D5",
-        },
-        {
-          id: 6,
-          name: "price 6",
-          htmlContent: "Price 6",
-          textColor: "#2c3e50",
+          name: "Cherry",
+          htmlContent: "Cherry",
+          textColor: "",
+          background: "",
         },
       ],
     };
   },
   methods: {
     launchWheel() {
-      this.selectedItemIndex = Math.floor(Math.random() * this.items.length);
-      this.rouletteKey += 1;
-
-      // Detect Safari and add a slight delay if Safari is detected
-      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-      if (isSafari) {
-        setTimeout(() => {
-          this.$refs.wheel.launchWheel({
-            selectedItemIndex: this.selectedItemIndex,
-          });
-        }, 100); // Adjust delay as needed
-      } else {
-        this.$refs.wheel.launchWheel({
-          selectedItemIndex: this.selectedItemIndex,
-        });
-      }
-    },
-    wheelEndedCallback(evt) {
-      const selectedPrize = this.prizeDescriptions[evt.id - 1];
-      this.winnerMessage = `Your price is: ${selectedPrize}!`;
+      this.$refs.wheel.launchWheel();
     },
   },
+  // data() {
+  //   return {
+  //     rouletteKey: 0,
+  //     winnerMessage: "",
+  //     selectedItemIndex: null,
+  //     prizeDescriptions: [
+  //       "a Trip to Japan",
+  //       "a Date + home made cuisine",
+  //       "a Date at Bao bar",
+  //       "a Date at Hard Rock",
+  //       "Airpods Pro 2",
+  //       "a ThinkPad P16s G3 16",
+  //     ],
+  //     items: [
+  //       {
+  //         id: 1,
+  //         name: "price 1",
+  //         htmlContent: "Price 1",
+  //         textColor: "#2c3e50",
+  //         background: "#E1EBEE",
+  //       },
+  //       {
+  //         id: 2,
+  //         name: "price 2",
+  //         htmlContent: "Price 2",
+  //         textColor: "#2c3e50",
+  //         background: "#87CEFA",
+  //       },
+  //       {
+  //         id: 3,
+  //         name: "price 3",
+  //         htmlContent: "Price 3",
+  //         textColor: "#2c3e50",
+  //         background: "#CF9FFF",
+  //       },
+  //       {
+  //         id: 4,
+  //         name: "price 4",
+  //         htmlContent: "Price 4",
+  //         textColor: "#2c3e50",
+  //         background: "#E6E6FA",
+  //       },
+  //       {
+  //         id: 5,
+  //         name: "price 5",
+  //         htmlContent: "Price 5",
+  //         textColor: "#2c3e50",
+  //         background: "#FDF0D5",
+  //       },
+  //       {
+  //         id: 6,
+  //         name: "price 6",
+  //         htmlContent: "Price 6",
+  //         textColor: "#2c3e50",
+  //       },
+  //     ],
+  //   };
+  // },
+  // methods: {
+  //   launchWheel() {
+  //     this.selectedItemIndex = Math.floor(Math.random() * this.items.length);
+  //     console.log("Selected Item Index:", this.selectedItemIndex);
+  //     this.rouletteKey += 1;
+
+  //     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  //     if (isSafari) {
+  //       setTimeout(() => {
+  //         this.$refs.wheel.launchWheel({
+  //           selectedItemIndex: this.selectedItemIndex,
+  //         });
+  //       }, 100);
+  //     } else {
+  //       this.$refs.wheel.launchWheel({
+  //         selectedItemIndex: this.selectedItemIndex,
+  //       });
+  //     }
+  //   },
+  //   wheelStartedCallback(evt) {
+  //     console.log("Wheel started spinning:", evt); // Example log for testing
+  //   },
+  //   wheelEndedCallback(evt) {
+  //     const selectedPrize = this.prizeDescriptions[evt.id - 1];
+  //     this.winnerMessage = `Your price is: ${selectedPrize}!`;
+  //   },
+  // },
 };
 </script>
 

@@ -1,6 +1,8 @@
 # a simply birthday fun app
 
-test hier: https://borndaywishes.netlify.app/
+some issues on web, but on mobile its working, test: https://borndaywishes.netlify.app/
+
+https://codesandbox.io/p/sandbox/vue3-roulette-c8tml?file=%2Fsrc%2FApp.vue%3A12%2C2-50%2C5
 
 built with Vu3 using Options API,
 for the spinner I used a roulette component: https://roulette.nitocode.com/docs,
